@@ -3,6 +3,8 @@ import routes from "./routes";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { IUserModel } from "./models/userModel";
+import { runSeederUsers } from "./database/seeders";
+import cors from "cors";
 
 declare global {
   namespace Express {
@@ -15,8 +17,12 @@ declare global {
 const app = express();
 
 dotenv.config();
+
+app.use(cors({ origin: process.env.CORS, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
+
+runSeederUsers();
 
 app.use(routes);
 
