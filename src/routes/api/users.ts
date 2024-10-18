@@ -4,7 +4,7 @@ import { privateRoutes } from "../../middleware/privateRoutes";
 
 const router = Router();
 
-router.get("/users", getUsers);
+router.get("/users", privateRoutes, getUsers);
 router.post("/users", privateRoutes, addUsers);
 
 export default router;
